@@ -19,17 +19,7 @@ cd Prueba-tecnica-backend
 
 
 
-2. Instalar Backend
-
-```bash
-cd backend
-cp .env.example .env  # O copia manualmente y edita tus variables
-pnpm install          # o npm install
-pnpm run prisma:generate 
-pnpm run prisma:migrate
-```
-
-3. Ejemplo de archivo .env para el Backend
+2. Crear las variables de entorno
 
 Tu archivo `.env` en la carpeta `backend` debe tener al menos estas variables:
 
@@ -37,6 +27,16 @@ Tu archivo `.env` en la carpeta `backend` debe tener al menos estas variables:
 PAYMENT_SERVICE_API="http://localhost:8080/process-payment"
 DATABASE_URL="postgresql://postgres:Qwerty!1@localhost:5432/database"
 ```
+
+3. Instalar Backend
+
+```bash
+cd backend
+pnpm install          # o npm install
+pnpm run prisma:generate 
+pnpm run prisma:migrate
+```
+
 
 4. Iniciar el backend
 

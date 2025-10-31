@@ -1,14 +1,14 @@
 {
   "name": "backend",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "Un servicio backend para procesar pagos y gestionar usuarios.",
+  "author": "Elvis Pérez Pérez elvisperezperez7@gmail.com +5359631282",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
     "build": "nest build",
-    "prisma:generate": "prisma generate",
-    "prisma:migrate": "prisma migrate dev",
+    "prisma:generate": "npx prisma generate",
+    "prisma:migrate": "npx prisma migrate dev",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
