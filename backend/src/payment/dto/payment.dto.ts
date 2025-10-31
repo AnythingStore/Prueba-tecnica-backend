@@ -4,6 +4,7 @@ import {
   IsString,
   IsNotEmpty,
   IsNumber,
+  IsIn,
 } from 'class-validator';
 
 export class CreatePaymentDto {
@@ -22,8 +23,4 @@ export class CreatePaymentDto {
   @IsString()
   @IsNotEmpty()
   currency: string = 'USD';
-
-  @IsString()
-  @IsNotEmpty()
-  status: string; // "approved" o "declined"
 }

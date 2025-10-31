@@ -4,7 +4,7 @@ import {
 } from '@nestjs/common';
 import { INestApplication } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import helmet from 'helmt';
+import helmet from 'helmet';
 export function aplicateGlobalConfiguration(app: INestApplication) {
   const isDebug = process.env.NODE_ENV == 'D';
   // Documentation

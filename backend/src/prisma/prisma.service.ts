@@ -4,7 +4,7 @@ import {
   Injectable,
   Logger,
 } from '@nestjs/common';
-import { PrismaClient } from 'generated/prisma';
+import { PrismaClient } from '../../generated/prisma';
 import {
   DELAY_IN_MILISECONDS,
   RETRIES_CONNECTIONS,

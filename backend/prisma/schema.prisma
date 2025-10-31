@@ -44,6 +44,7 @@ model Payment {
   amount   Decimal @db.Decimal(10, 2)
   currency String  @default("USD")
   status   String // "approved" o "declined"
+  reason   String?
 
   createdAt DateTime @default(now())
 

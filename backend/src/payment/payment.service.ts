@@ -3,6 +3,9 @@ import { PrismaService } from 'src/prisma/prisma.service';
 import { UserService } from 'src/user/user.service';
 import { CreatePaymentDto } from './dto/payment.dto';
 import { CardService } from 'src/card/card.service';
+import { HttpService } from '@nestjs/axios';
+import { firstValueFrom } from 'rxjs';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class PaymentService {
@@ -10,6 +13,8 @@ export class PaymentService {
     private readonly prisma: PrismaService,
     private readonly userService: UserService,
     private readonly cardService: CardService,
+    private readonly configService: ConfigService,
+    private readonly httpService: HttpService,
   ) {}
 
   async create(createPaymentDto: CreatePaymentDto) {
@@ -21,13 +26,25 @@ export class PaymentService {
       throw new BadRequestException('La tarjeta no pertenece al usuario');
     }
 
+    const response = await firstValueFrom(
+      this.httpService.post(this.configService.get('PAYMENT_SERVICE_API')!, {
+        amount: createPaymentDto.amount,
+        currency: createPaymentDto.currency,
+        user_id: createPaymentDto.userId,
+        card_id: createPaymentDto.cardId,
+      }),
+    );
+
+    const paymentResult = response.data;
+
     return this.prisma.payment.create({
       data: {
         userId: createPaymentDto.userId,
         cardId: createPaymentDto.cardId,
         amount: createPaymentDto.amount,
         currency: createPaymentDto.currency,
-        status: createPaymentDto.status,
+        status: paymentResult.approved === true ? 'approved' : 'declined',
+        reason: paymentResult.reason || null,
       },
     });
   }

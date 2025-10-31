@@ -13,7 +13,7 @@ export class CardService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly userService: UserService,
-  ) { }
+  ) {}
 
   async create(createCardDto: CreateCardDto) {
     this._validateCardExpiration(
